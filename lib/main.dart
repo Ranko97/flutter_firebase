@@ -1,8 +1,10 @@
+import 'package:firestore_app/firebase_options.dart';
 import 'package:firestore_app/routing/router.dart';
 import 'package:firestore_app/themes/client_configuration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main(List<String> args) {
   MainApp().run(
@@ -35,10 +37,9 @@ class MainApp {
       DeviceOrientation.portraitUp,
     ]);
 
-    // // await Firebase.initializeApp(
-    // //   name: config.appName,
-    // //   options: config.firebaseOptions,
-    // // );
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
     // // // Pass all uncaught errors from the framework to Crashlytics.
     // // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;

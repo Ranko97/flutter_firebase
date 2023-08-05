@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginView extends ConsumerStatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -32,6 +33,12 @@ class _LoginViewState extends ConsumerState<LoginView> {
   var passwordController = TextEditingController(text: "");
   final formKey = GlobalKey<FormState>();
   DateTime? currentBackPressTime;
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: [
+      'email',
+      // 'https://www.googleapis.com/auth/contacts.readonly',
+    ],
+  );
   // final analytics = FirebaseAnalytics.instance;
 
   Future<void> onLoginPressed() async {
@@ -66,7 +73,18 @@ class _LoginViewState extends ConsumerState<LoginView> {
     // }
     // setState(() => loading = false);
 
-    context.goNamed(MainScreenView.routeName);
+    try {
+      final account = await _googleSignIn.signIn();
+
+      debugPrint(account?.email);
+
+      if (mounted) {
+        context.goNamed(MainScreenView.routeName);
+      }
+    } catch (error) {
+      // ignore: avoid_print
+      print(error);
+    }
   }
 
   Future<bool> onWillPop() {

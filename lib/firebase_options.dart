@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '686149617348',
     projectId: 'firestore-app-e617a',
     storageBucket: 'firestore-app-e617a.appspot.com',
-    iosClientId: '686149617348-mjp0dfunitf5rbbuv5u4pp68su2nrhed.apps.googleusercontent.com',
+    iosClientId:
+        '686149617348-mjp0dfunitf5rbbuv5u4pp68su2nrhed.apps.googleusercontent.com',
     iosBundleId: 'com.example.firestoreApp',
   );
 }
