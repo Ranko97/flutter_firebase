@@ -1,36 +1,35 @@
-name: firestore_app
-description: An app for experimenting with Firebase realtime database.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+name: fireshop
+description: A new Flutter project.
 
-version: 0.0.1+1
+# Prevent accidental publishing to pub.dev.
+publish_to: 'none'
+
+version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.2 <4.0.0'
+  sdk: '>=3.0.6 <4.0.0'
 
 dependencies:
-  cupertino_icons: ^1.0.2
-  dio: ^5.0.2
-  either_dart: ^0.3.0
+  firebase_auth: ^4.7.2
   firebase_core: ^2.15.0
-  firebase_ui_firestore: ^1.5.2
   flutter:
     sdk: flutter
-  flutter_riverpod: ^2.3.0
-  flutter_staggered_animations: ^1.1.1
-  form_field_validator: ^1.1.0
-  go_router: ^6.2.0
+  flutter_localizations:
+    sdk: flutter
   google_sign_in: ^6.1.4
-  http: ^0.13.5
-  intl: ^0.18.0
-  package_info_plus: ^3.0.3
 
 dev_dependencies:
+
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
 
 flutter:
-
   uses-material-design: true
+
+  # Enable generation of localized Strings from arb files.
+  generate: true
+
   assets:
-    - ./assets/images/
+    # Add assets from the images directory to the application.
+    - assets/images/

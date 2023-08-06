@@ -23,13 +23,13 @@
             ]
         },
         {
-            "name": "firestore (profile mode)",
+            "name": "fireshop (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "firestore (release mode)",
+            "name": "fireshop (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

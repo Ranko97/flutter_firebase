@@ -1,34 +1,49 @@
 {
   "project_info": {
-    "project_number": "686149617348",
-    "project_id": "firestore-app-e617a",
-    "storage_bucket": "firestore-app-e617a.appspot.com"
+    "project_number": "403244459034",
+    "project_id": "fireshop-dba65",
+    "storage_bucket": "fireshop-dba65.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:686149617348:android:b4d24de650c42f88c0ab91",
+        "mobilesdk_app_id": "1:403244459034:android:5e529d35a6fa6dd4161da3",
         "android_client_info": {
-          "package_name": "com.example.firestore_app"
+          "package_name": "com.fireshopapp.fireshop"
         }
       },
       "oauth_client": [
         {
-          "client_id": "686149617348-uogb1nbqdhhrqg2vgf79q5u4rur82u65.apps.googleusercontent.com",
+          "client_id": "403244459034-dtmle3eg81kk5eo9qh56kt180mim077a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fireshopapp.fireshop",
+            "certificate_hash": "92038da9076612e825beb82ec98df2209e703408"
+          }
+        },
+        {
+          "client_id": "403244459034-sisokgu0v0he3e9vtaaca7ptcgirp8v3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBlOvQCGKEd8btvOaTpMW0VwwqXkAhY3V4"
+          "current_key": "AIzaSyDMJkX5VRrbKs1VHqsXzTFgO-JGeUwEKwM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "686149617348-uogb1nbqdhhrqg2vgf79q5u4rur82u65.apps.googleusercontent.com",
+              "client_id": "403244459034-e0bgfjorl18cl2gohvj839h2hpheqbad.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "403244459034-a4hqqljd3447hl6eg622fus2ca9fnpnr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.fireshopapp.fireshop"
+              }
             }
           ]
         }

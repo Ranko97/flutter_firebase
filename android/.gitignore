@@ -11,3 +11,8 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+**/*.p12
+key.properties
+
+# I don't need anything from build folder
+build/*

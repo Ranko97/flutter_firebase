@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>686149617348-mjp0dfunitf5rbbuv5u4pp68su2nrhed.apps.googleusercontent.com</string>
+	<string>403244459034-a4hqqljd3447hl6eg622fus2ca9fnpnr.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.686149617348-mjp0dfunitf5rbbuv5u4pp68su2nrhed</string>
+	<string>com.googleusercontent.apps.403244459034-a4hqqljd3447hl6eg622fus2ca9fnpnr</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>403244459034-dtmle3eg81kk5eo9qh56kt180mim077a.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCexBemKAMw_14XL5-UitzpVOc6I26DvE0</string>
+	<string>AIzaSyBwnpWSAHewNGwntSiX19g8P22nMt8cnX8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>686149617348</string>
+	<string>403244459034</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.firestoreApp</string>
+	<string>com.fireshopapp.fireshop</string>
 	<key>PROJECT_ID</key>
-	<string>firestore-app-e617a</string>
+	<string>fireshop-dba65</string>
 	<key>STORAGE_BUCKET</key>
-	<string>firestore-app-e617a.appspot.com</string>
+	<string>fireshop-dba65.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:686149617348:ios:6b032a4b02604ad6c0ab91</string>
+	<string>1:403244459034:ios:50cb07c6349de188161da3</string>
 </dict>
 </plist>

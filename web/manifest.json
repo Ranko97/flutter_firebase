@@ -1,6 +1,6 @@
 {
-    "name": "firestore_app",
-    "short_name": "firestore_app",
+    "name": "fireshop",
+    "short_name": "fireshop",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

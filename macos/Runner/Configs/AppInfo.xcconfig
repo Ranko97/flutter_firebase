@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = firestore_app
+PRODUCT_NAME = fireshop
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.firestoreApp
+PRODUCT_BUNDLE_IDENTIFIER = com.fireshopapp.fireshop
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 com.fireshopapp. All rights reserved.
