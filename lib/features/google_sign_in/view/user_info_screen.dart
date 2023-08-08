@@ -1,14 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fireshop/src/features/login/authentication.dart';
-import 'package:fireshop/src/features/login/view/login_view.dart';
+import 'package:fireshop/features/login/authentication.dart';
+import 'package:fireshop/features/login/view/login_view.dart';
 import 'package:flutter/material.dart';
 
 class UserInfoScreen extends StatefulWidget {
-  const UserInfoScreen({Key? key, required User user})
-      : _user = user,
-        super(key: key);
+  const UserInfoScreen({
+    super.key,
+    required this.user,
+  });
 
-  final User _user;
+  final User user;
 
   @override
   State createState() => _UserInfoScreenState();
@@ -40,7 +41,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   void initState() {
-    _user = widget._user;
+    _user = widget.user;
 
     super.initState();
   }
