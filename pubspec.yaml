@@ -12,6 +12,9 @@ environment:
 dependencies:
   firebase_auth: ^4.7.2
   firebase_core: ^2.15.0
+  firebase_ui_auth: ^1.6.2
+  firebase_ui_oauth_apple: ^1.2.7
+  firebase_ui_oauth_google: ^1.2.7
   flutter:
     sdk: flutter
   flutter_localizations:

@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:fireshop/firebase_options.dart';
 import 'package:fireshop/routing/router.dart';
 import 'package:fireshop/src/settings/settings_controller.dart';
@@ -7,57 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({
-//     super.key,
-//     required this.settingsController,
-//   });
-
-//   final SettingsController settingsController;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AnimatedBuilder(
-//       animation: settingsController,
-//       builder: (BuildContext context, Widget? child) {
-//         return MaterialApp(
-//           restorationScopeId: 'app',
-//           localizationsDelegates: const [
-//             AppLocalizations.delegate,
-//             GlobalMaterialLocalizations.delegate,
-//             GlobalWidgetsLocalizations.delegate,
-//             GlobalCupertinoLocalizations.delegate,
-//           ],
-//           supportedLocales: const [
-//             Locale('en', ''),
-//           ],
-//           onGenerateTitle: (BuildContext context) =>
-//               AppLocalizations.of(context)!.appTitle,
-//           theme: ThemeData(),
-//           darkTheme: ThemeData.dark(),
-//           themeMode: settingsController.themeMode,
-//           onGenerateRoute: (RouteSettings routeSettings) {
-//             return MaterialPageRoute<void>(
-//               settings: routeSettings,
-//               builder: (BuildContext context) {
-//                 switch (routeSettings.name) {
-//                   case SettingsView.routeName:
-//                     return SettingsView(controller: settingsController);
-//                   case SampleItemDetailsView.routeName:
-//                     return const SampleItemDetailsView();
-//                   case SampleItemListView.routeName:
-//                   default:
-//                     return const LoginView();
-//                 }
-//               },
-//             );
-//           },
-//         );
-//       },
-//     );
-//   }
-// }
+import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
+import 'package:firebase_ui_oauth_apple/firebase_ui_oauth_apple.dart';
 
 class MainApp {
   late final ClientConfiguration config;
@@ -90,42 +42,31 @@ class MainApp {
       options: DefaultFirebaseOptions.currentPlatform,
     );
 
+    FirebaseUIAuth.configureProviders([
+      EmailAuthProvider(),
+      // emailLinkProviderConfig,
+      PhoneAuthProvider(),
+      GoogleProvider(clientId: "ignore_me"),
+      AppleProvider(),
+    ]);
+
     // Do not allow device to go to sleep while in the app
     WakelockPlus.enable();
 
     runApp(
-      _MainApp(
-        clientConfiguration: config,
-        settingsController: settingsController,
-      ),
-    );
-  }
-}
-
-class _MainApp extends StatelessWidget {
-  const _MainApp({
-    Key? key,
-    required this.clientConfiguration,
-    required this.settingsController,
-  }) : super(key: key);
-
-  final ClientConfiguration clientConfiguration;
-  final SettingsController settingsController;
-
-  @override
-  Widget build(BuildContext context) {
-    return ProviderScope(
-      child: _AppInitializerWidget(
-        clientConfiguration: clientConfiguration,
-        settingsController: settingsController,
+      ProviderScope(
+        child: _MainAppInitializer(
+          clientConfiguration: config,
+          settingsController: settingsController,
+        ),
       ),
     );
   }
 }
 
 /// This app is used to initialize services that depend on provider reference (Riverpod's providers)
-class _AppInitializerWidget extends ConsumerWidget {
-  const _AppInitializerWidget({
+class _MainAppInitializer extends ConsumerWidget {
+  const _MainAppInitializer({
     required this.clientConfiguration,
     required this.settingsController,
   });
@@ -136,6 +77,7 @@ class _AppInitializerWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // "".initTranslations(ref);
+    final goRouter = ref.watch(routerProvider);
 
     return MaterialApp.router(
       title: clientConfiguration.displayedAppName,
