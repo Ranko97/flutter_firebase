@@ -1,47 +1,93 @@
-import 'package:fireshop/features/google_sign_in/view/google_button.dart';
-import 'package:fireshop/features/login/authentication.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:fireshop/routing/router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class LoginViewLocal extends StatefulWidget {
+  const LoginViewLocal({super.key});
 
   @override
-  State createState() => _LoginViewState();
+  State createState() => _LoginViewLocalState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewLocalState extends State<LoginViewLocal> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(16, 160, 16, 16),
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          // mainAxisAlignment: MainAxisAlignment.center,
+    final mfaAction = AuthStateChangeAction<MFARequired>(
+      (context, state) async {
+        final nav = Navigator.of(context);
 
-          children: [
-            const Text(
-              'FlutterFire',
-              textAlign: TextAlign.center,
+        await startMFAVerification(
+          resolver: state.resolver,
+          context: context,
+        );
+
+        nav.pushReplacementNamed('/profile');
+      },
+    );
+
+    return SignInScreen(
+      actions: [
+        ForgotPasswordAction((context, email) {
+          context.pushNamed(AppRoute.forgotpassword.name);
+        }),
+        VerifyPhoneAction((context, _) {
+          context.pushNamed(AppRoute.phone.name);
+        }),
+        AuthStateChangeAction<SignedIn>((context, state) {
+          if (!state.user!.emailVerified) {
+            context.pushNamed(AppRoute.verifyemail.name);
+          } else {
+            context.pushNamed(AppRoute.profile.name);
+          }
+        }),
+        AuthStateChangeAction<UserCreated>((context, state) {
+          if (!state.credential.user!.emailVerified) {
+            context.pushNamed(AppRoute.verifyemail.name);
+          } else {
+            context.pushNamed(AppRoute.profile.name);
+          }
+        }),
+        AuthStateChangeAction<CredentialLinked>((context, state) {
+          if (!state.user.emailVerified) {
+            context.pushNamed(AppRoute.verifyemail.name);
+          } else {
+            context.pushNamed(AppRoute.profile.name);
+          }
+        }),
+        mfaAction,
+        EmailLinkSignInAction((context) {
+          context.pushNamed(AppRoute.emaillinksignin.name);
+        }),
+      ],
+      styles: const {
+        EmailFormStyle(signInButtonVariant: ButtonVariant.filled),
+      },
+      // headerBuilder: headerImage('assets/images/flutterfire_logo.png'),
+      // sideBuilder: sideImage('assets/images/flutterfire_logo.png'),
+      subtitleBuilder: (context, action) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: Text(
+            action == AuthAction.signIn
+                ? 'Welcome to Firebase UI! Please sign in to continue.'
+                : 'Welcome to Firebase UI! Please create an account to continue',
+          ),
+        );
+      },
+      footerBuilder: (context, action) {
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: Text(
+              action == AuthAction.signIn
+                  ? 'By signing in, you agree to our terms and conditions.'
+                  : 'By registering, you agree to our terms and conditions.',
+              style: const TextStyle(color: Colors.grey),
             ),
-            const Text(
-              'Authentication',
-              textAlign: TextAlign.center,
-            ),
-            FutureBuilder(
-              future: Authentication.initializeFirebase(context: context),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return const Text('Error initializing Firebase');
-                } else if (snapshot.connectionState == ConnectionState.done) {
-                  return const GoogleSignInButton();
-                }
-                return const CircularProgressIndicator.adaptive();
-              },
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
